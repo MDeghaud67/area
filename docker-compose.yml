@@ -1,0 +1,19 @@
+version: '2'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - '8081:3001'
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - '8080:8080'
+    depends_on:
+      - sqlite3
+
+  sqlite3:
+    # image: sqlite3
+    build: ./.tmp
