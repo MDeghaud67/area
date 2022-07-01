@@ -1,19 +1,21 @@
-version: '2'
+version: '3'
 services:
   frontend:
     build: ./frontend
+    container_name: client_web
     ports:
       - '8081:3001'
     depends_on:
       - backend
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+    container_name: server
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./app:/srv/app
     ports:
-      - '8080:8080'
-    depends_on:
-      - sqlite3
-
-  sqlite3:
-    # image: sqlite3
-    build: ./.tmp
+      - '8080:1337'
