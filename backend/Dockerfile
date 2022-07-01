@@ -1,7 +1,7 @@
-FROM node:16
+FROM node:latest
 
 # Create app directory
-WORKDIR /usr/src/backend
+WORKDIR /usr/src/app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -15,11 +15,6 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-<<<<<<< HEAD
-=======
-# ENV NODE_ENV production
-
->>>>>>> 9495a7da84f6620a202dd238f73209e0609e2f46
 RUN npm run build
 
 EXPOSE 8080
