@@ -1,0 +1,21 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    container_name: client_web
+    ports:
+      - '8081:3000'
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+    container_name: server
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./app:/srv/app
+    ports:
+      - '8080:1337'
